@@ -110,7 +110,7 @@
                 <select name="zona_id" id="ddl_zona" class="form-control" required>
                 </select>
                 <label for="" >Sueldo</label>
-                <input type="text" class="form-control" id="sueldo" name="sueldo" required>
+                <input type="text" class="form-control " id="sueldo" name="sueldo" onkeypress="javascript:return isNumber(event)" required>
                 <label for="" >Estado</label>
                 <select name="estado" id="estado" class="form-control" required>
                     <option value="Activo">Activo</option>
@@ -133,6 +133,14 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
    <script>
+   function isNumber(evt) {
+        var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+        if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+            return false;
+
+        return true;
+    }    
+
     $(document).ready( function () {
         $('#myTable').DataTable();
     });

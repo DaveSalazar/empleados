@@ -14,5 +14,4 @@ before_script:
   - php artisan migrate:refresh 
   - php artisan db:seed 
 
-script:
-  - vendor/bin/phpunit
+

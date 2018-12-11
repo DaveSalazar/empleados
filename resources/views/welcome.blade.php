@@ -56,7 +56,32 @@
                 </tbody>
             </table>
         </div>
-    </div>    
+    </div>  
+    <hr>
+    
+    <div class="container">
+    <h3>Sueldos de empleados mayores  a 65</h3>
+        <div class="row">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <td>Sector</td>
+                        <td>Zona</td>
+                        <td>Sueldo</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($calc as $data)
+                    <tr>
+                        <td>{{ $sectores->where('id', $zonas->where('id', $data->zona_id)->first()->sector_id)->first()->des_sector }}</td>
+                        <td>{{ $zonas->where('id', $data->zona_id)->first()->des_zona }}</td>
+                        <td>{{ $data->total }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>  
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <form action="{{ url('/personas') }}" method="POST">

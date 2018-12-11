@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Ap\Sector;
+use App\Sector;
 use App\Zona;
 use App\Persona;
 
@@ -39,18 +39,24 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
+        $persona = null;
+        if($request->persona_id == null){
+            $persona = new Persona();            
+        }else{
+            $persona = Persona::find($request->persona_id);
+        }
 
-        $sector = Sector::find($request->sector_id);
-        $zona = Zona::find($request->zona_id);
-
-        $persona = new Persona();
-
+        
         $persona->nom_persona = $request->nom_persona;
         $persona->fec_nacimiento = $request->fec_nacimiento;
+        $persona->sueldo = $request->sueldo;
+        $persona->estado = $request->estado;
+        $persona->sector_id = $request->sector_id;
+        $persona->zona_id = $request->zona_id;
 
-        $sector->personas()->save($persona);
-        $sector->personas()->save($zona);
+        $persona->save();
 
+        return redirect('/');
     }
 
     /**
@@ -108,6 +114,6 @@ class PersonaController extends Controller
         $persona = Persona::find($id);
 
         $persona->delete();
-
+        return redirect('/');
     }
 }

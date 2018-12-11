@@ -13,7 +13,8 @@ class HomeController extends Controller
 
         $sectores = Sector::all();
         $zonas = Zona::all();
+        $personas = Persona::all();
 
-        return view('welcome', compact('zonas', 'sectores'));
+        return view('welcome', compact('zonas', 'sectores', 'personas'));
     }
 }
